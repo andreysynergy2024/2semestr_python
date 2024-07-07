@@ -1,0 +1,48 @@
+OWNER = "Имя владельца"
+BREED = "Порода"
+AGE = "Возраст"
+
+
+def get_pet_attributes():
+    pet_name = input("Введите кличку:")
+    pet_breed = input("Введите породу:")
+    pet_age = int(input("Введите возраст:"))
+    pet_owner = input("Введите имя владельца:")
+    return pet_name, pet_breed, pet_age, pet_owner
+
+
+def format_age(age: int) -> str:
+    age_kind = "года" if age < 5 else "лет"
+    return f"{age} {age_kind}"
+
+
+def print_pet(pet_name: str, pet: dict):
+    # Можно обратиться к словарю так:
+    for pet_name in pet.keys():
+        any_pet = pet.get(pet_name)
+        for k, v in any_pet.items():
+            print(k, v)
+
+    # но лучше - так:
+    pet_breed = pet[pet_name][BREED]
+    pet_age = pet[pet_name][AGE]
+    pet_owner = pet[pet_name][OWNER]
+
+    print(f"Это {pet_breed} по кличке \"{pet_name}\". Возраст {format_age(pet_age)}. Имя владельца {pet_owner}.")
+
+
+def fill_dictionary():
+    pets = {}
+
+    pet_name, pet_breed, pet_age, pet_owner = get_pet_attributes()
+
+    pets[pet_name] = {}
+    pets[pet_name][BREED] = pet_breed
+    pets[pet_name][AGE] = pet_age
+    pets[pet_name][OWNER] = pet_owner
+
+    print_pet(pet_name, pets)
+
+
+if __name__ == "__main__":
+    fill_dictionary()
