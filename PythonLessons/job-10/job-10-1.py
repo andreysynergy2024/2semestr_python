@@ -12,8 +12,15 @@ def get_pet_attributes():
 
 
 def format_age(age: int) -> str:
-    age_kind = "года" if age < 5 else "лет"
-    return f"{age} {age_kind}"
+    def fmt(a, k):
+        return f"{a} {k}"
+
+    if age % 10 == 1 and age != 11:
+        return fmt(age, "год")
+    elif age % 10 in [2, 3, 4] and (age < 10 or age > 20):
+        return fmt(age, "года")
+    else:
+        return fmt(age, "лет")
 
 
 def print_pet(pet_name: str, pet: dict):
