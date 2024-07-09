@@ -8,7 +8,7 @@ def factorial(n):
 def clac_factorial():
     number = int(input("Введите число:"))
     factorials = []
-    for n in range(number, 0, -1):
+    for n in range(factorial(number), 0, -1):
         f = factorial(n)
         factorials.append(f)
 
